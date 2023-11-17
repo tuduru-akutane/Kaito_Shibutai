@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品詳細画面</title>
+<link rel="stylesheet" href="chocoInfo.css">
+</head>
+<style>
+.title {
+	background-color: #ffd4d4;
+	height: 120px;
+}
+
+.title  img {
+	height: 120px;
+	width: auto;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.center {
+	text-align: center;
+}
+
+.center img {
+	width: 300px;
+	height: auto;
+}
+
+.fit-picture {
+	width: 250px;
+}
+
+hr {
+	border: none;
+	background-color: #fff;
+	border-top: dotted;
+	border-color: rgb(143, 42, 42);
+}
+
+button {
+	background-color: #831f1a;
+	/* 背景色 */
+	color: white;
+	/* 文字色 */
+	padding: 6px 15px;
+	/* パディング */
+	text-align: center;
+	/* 文字のアライメント */
+	text-decoration: none;
+	/* 文字装飾 */
+	display: inline-block;
+	/* ボタンの表示方法 */
+	font-size: 16px;
+	/* フォントサイズ */
+	font-family: Arial, sans-serif;
+	/* フォント */
+	cursor: pointer;
+	/* カーソル */
+	border: none;
+	/* ボーダーなし */
+	border-radius: 50px;
+	/* 50pxの角丸 */
+	display: block;
+	margin: auto;
+	margin-bottom: 5px;
+}
+
+button:hover {
+	filter: alpha(opacity = 70);
+	-moz-opacity: 0.7;
+	opacity: 0.7;
+}
+
+table {
+	border-collapse: collapse;
+	margin: auto;
+	background-color: #fff;
+}
+
+h2, p {
+	color: #831f1a;
+}
+
+.table_inner h2, .table_inner p .table_inner a {
+	margin: 8px;
+	text-align: left;
+}
+
+.design01 {
+	width: 70%;
+	text-align: center;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.design01 th {
+	padding: 10px;
+	background: #831f1a;
+	border: solid 1px #831f1a;
+	color: #fff;
+}
+
+.design01 td {
+	padding: 10px;
+	border: solid 1px #831f1a;
+}
+
+.hosi {
+	color: rgb(244, 0, 0)
+}
+</style>
+<body>
+	<header class="title">
+		<a th:href="@{/choco}"> <img th:src="@{/images/title.png}"
+			alt="代替テキスト">
+		</a>
+	</header>
+	<br>
+	<div class="center">
+		<table>
+			<tr>
+				<td><img th:src="${chocoForm.img}" class=".fit-picture"></td>
+				<td>&nbsp;</td>
+				<td>
+					<table class="table_inner">
+						<tr>
+							<td><p th:text="${makerSt}"></p></td>
+						</tr>
+						<tr>
+							<td><h2 th:text="${chocoForm.name}" id="name"></h2></td>
+						</tr>
+						<tr>
+							<td><p th:text="${tasteSt}+味">チョコレート</p></td>
+						</tr>
+						<tr>
+							<td><a th:href="${chocoForm.link}" id="link">ホームページへ</a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<form th:action="@{/choco/choco-list/{id}/edit(id=${id})}"
+			method="GET">
+			<button type="submit">編集画面へ</button>
+		</form>
+	</div>
+
+	<br>
+	<hr size="5">
+	<br>
+
+<!-- 
+	<form action="" method="GET">
+		<button type="submit">レビュー</button>
+	</form>
+ -->
+
+	<table class="design01">
+		<tr>
+			<th>評価</th>
+			<th>名前</th>
+			<th>口コミ</th>
+		</tr>
+
+		<tr th:if="${!#lists.isEmpty(review)}" th:each="review : ${review}">
+			<div th:switch="${review.star}" class="hosi">
+				<td th:case=1.0>☆☆☆☆★</td>
+				<td th:case=2.0>☆☆☆★★</td>
+				<td th:case=3.0>☆☆★★★</td>
+				<td th:case=4.0>☆★★★★</td>
+				<td th:case=5.0>★★★★★</td>
+			</div>
+
+			<td th:text="${review.author}">/td>
+			<td th:text="${review.review_info}">/td>
+		</tr>
+
+	</table>
+</body>
+</html>

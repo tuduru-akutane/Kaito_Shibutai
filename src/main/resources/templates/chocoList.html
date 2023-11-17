@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一覧画面</title>
+<link rel="stylesheet" href="chocoList.css">
+<link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
+
+<style>
+
+{"version":3,"sources":["background.scss","background.css"],"names":[],"mappings":"AAaA;EACE,YAAA;ACZF;;ADcA;EACE,sqBACE;EAqCF,wBAAA;EACA,uBAxDQ;EAyDR,yBAAA;EACA,gDAAA;AChDF","file":"background.css"}
+
+$bgcolor: black;
+$transparent: rgba(255, 255, 255, 0);
+
+$color-1: #E83A25;
+$color-1-t: transparentize($color-1, 1);
+$color-2: pink;
+$color-2-t: transparentize($color-2, 1);
+
+$size: 4em;
+$big-size: $size*2;
+$min: $size*.3;
+$max: $size*.7;
+
+.background-color2 {
+  background: 
+    linear-gradient(135deg,
+      $color-1 $min,
+      $color-1-t $min
+      ) 0 #{$size},
+    linear-gradient(-135deg,
+      $color-1 $min,
+      $color-1-t $min
+      ) 0 #{$size},
+    
+    radial-gradient(circle at #{$big-size - $min*.7} $size*1.85,
+      $color-1 $min*.85,
+      $color-1-t $min*.87
+      ) 0 -#{$size},
+    radial-gradient(circle at #{$min*.7} $size*1.85,
+      $color-1 $min*.85,
+      $color-1-t $min*.87
+      ) 0 -#{$size},
+
+
+    linear-gradient(135deg,
+      $color-2 $min,
+      $color-2-t $min
+      ) $size 0,
+    linear-gradient(-135deg,
+      $color-2 $min,
+      $color-2-t $min
+      ) $size 0,
+    
+    radial-gradient(circle at #{$big-size - $min*.7} $size*1.85,
+      $color-2 $min*.85,
+      $color-2-t $min*.87
+      ) $size 0,
+    radial-gradient(circle at #{$min*.7} $size*1.85,
+      $color-2 $min*.85,
+      $color-2-t $min*.87
+      ) $size 0
+    ;
+  background-size:  $big-size $big-size;
+  background-color: $bgcolor;
+  background-repeat: repeat;
+  font: 16px/2 'Trebuchet MS', Verdana, sans-serif;
+  }
+
+HTML {
+  height: 100%;
+}
+
+.background-color2 {
+  background: linear-gradient(135deg, #E83A25 1.2em, rgba(232, 58, 37, 0) 1.2em) 0 4em, linear-gradient(-135deg, #E83A25 1.2em, rgba(232, 58, 37, 0) 1.2em) 0 4em, radial-gradient(circle at 7.16em 7.4em, #E83A25 1.02em, rgba(232, 58, 37, 0) 1.044em) 0 -4em, radial-gradient(circle at 0.84em 7.4em, #E83A25 1.02em, rgba(232, 58, 37, 0) 1.044em) 0 -4em, linear-gradient(135deg, pink 1.2em, rgba(255, 192, 203, 0) 1.2em) 4em 0, linear-gradient(-135deg, pink 1.2em, rgba(255, 192, 203, 0) 1.2em) 4em 0, radial-gradient(circle at 7.16em 7.4em, pink 1.02em, rgba(255, 192, 203, 0) 1.044em) 4em 0, radial-gradient(circle at 0.84em 7.4em, pink 1.02em, rgba(255, 192, 203, 0) 1.044em) 4em 0;
+  background-size: 8em 8em;
+  background-color: black;
+  background-repeat: repeat;
+  font: 16px/2 "Trebuchet MS", Verdana, sans-serif;
+}/*# sourceMappingURL=background.css.map */
+
+* {
+	box-sizing: border-box;
+} 
+
+.test {
+	display: flex;
+	justify-content: space-between;
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.test2 {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.test3 {
+	display: flex;
+	justify-content: flex-start;
+	gap: 10px 15px;
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.test4 {
+	margin-left: 32px;
+}
+
+.test5 {
+	margin-left: 48px;
+}
+
+.test6 {
+	background-color: pink;
+}
+
+.test7 {
+	width: 10px;
+}
+
+span {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+table {
+	margin: 0 auto;
+	text-align: right;
+}
+
+.Corps {
+	display: none;
+}
+
+h1 {
+	text-align: center;
+}
+
+#background {
+	background-size: cover;
+	color: blue;
+}
+
+.size { /*画像のサイズを調整するクラス*/
+	
+}
+
+.top-pull-style1 {
+	margin:0 auto;
+}
+
+.top-pull-style {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 17%;
+}
+
+.img__inner {
+	background-color:white;
+	
+   display: flex;
+
+   gap: 30px;
+
+   padding: 32px 0;
+
+   max-width: 1000px;
+
+   margin: 0 auto;
+}
+
+.img__card {
+	margin-top:5px;
+   width: 33.333%;
+	margin:0 auto;
+}
+
+.img-item {
+   width: 100%;
+
+   height:300px;
+
+   object-fit: cover; /* width, heightといっしょに使います */
+
+   border: 1px solid #111;
+	
+}
+
+.title{
+	background-color:#ffd4d4;
+	height: 120px;
+	
+}
+.title  img{
+	height: 120px;
+	width: auto;
+	
+}
+p,a {
+	color: #831f1a;
+	text-decoration: none;
+	font-size: 1.2em;
+	}
+.background-color span{
+	color: #831f1a;
+	text-decoration: none;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+hr {
+		border: none;
+		background-color: #fff;
+		border-top: dotted;
+		border-color: rgb(143, 42, 42);
+}
+
+.background-color{
+	background-color:white;
+	height:340px;
+	z-index: -1;
+}
+
+</style>
+</head>
+
+<body class="color">
+    <div class="background-color">
+	   	<header class="title">
+		<a th:href="@{/choco}"> <img th:src="@{/images/title.png}"
+			alt="代替テキスト">
+		</a>
+		</header>
+    <br>
+	    <div class="test">
+			<span>絞り込み検索</span>
+		</div>
+		<div class="top-pull-sryle">
+			<form method="POST" th:action="@{/choco/choco-list/search}" th:object="${chocoSrchForm}">
+				<div class="top-pull-style1">
+					<p>
+						企業名： <select th:field="*{maker}">
+							<option value="">選択</option>
+							<option value="1">ロッテ</option>
+							<option value="2">ブルボン</option>
+							<option value="3">森永</option>
+							<option value="4">明治</option>
+							<option value="5">グリコ</option>
+							<option value="6">不二家</option>
+							<option value="7">ネスレ</option>
+						</select>
+						<button type="submit">検索</button>
+					</p>
+				</div>
+			</form>
+	
+	
+			<form method="POST" th:action="@{/choco/choco-list/search}" th:object="${chocoSrchForm}">
+				<div class="top-pull-style1">
+					<p>
+						フレーバー： <select th:field="*{taste}">
+							<option value="">選択</option>
+							<option value="1">ミルク</option>
+							<option value="2">ビター</option>
+							<option value="3">ホワイト</option>
+							<option value="4">フルーツ</option>
+							<option value="5">抹茶</option>
+						</select>
+						<button type="submit">検索</button>
+					</p>
+				</div>
+			</form>
+	
+			<form method="POST" th:action="@{/choco/choco-list/search}" th:object="${chocoSrchForm}">
+				<div class="">
+					<p>
+						分類： <select th:field="*{kind}">
+							<option value="">選択</option>
+							<option value="1">トリュフ</option>
+							<option value="2">板チョコ</option>
+							<option value="3">アイス</option>
+							<option value="4">クッキー</option>
+							<option value="5">ビスケット</option>
+							<option value="6">ウエハース</option>
+						</select>
+						<button type="submit">検索</button>
+					</p>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	
+    <br>
+    
+    <hr size="5">
+   		<div class="background-color2">
+		    <div class="img__inner">
+		       <div class="img__card">
+				    <tr th:if="${!#lists.isEmpty(list)}" th:each="fruit : ${list}">
+				        <td>
+				            <a method="GET" th:href="@{/choco/choco-list/{id}(id=${fruit.id}) }">
+				                <p><img th:src="@{${fruit.img}}" class="img-item"><span th:text="${fruit.name}"></span></p>
+				            </a>
+				        </td>
+		   			 </tr>
+		   			 
+		   			 <tr th:if="${!#lists.isEmpty(slist)}" th:each="fruits : ${slist}">
+				        <td>
+				            <a method="GET" th:href="@{/choco/choco-list/{id}(id=${fruits.id})}">
+				                <p><img th:src="@{${fruits.img}}" class="img-item"><span th:text="${fruits.name}"></span></p>
+				            </a>
+				        </td>
+		   			 </tr>
+		   			 
+		    	 </div>
+		     </div>
+		 </div>
+
+   <!--- <header>メニューに戻る</header> -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+            $('.button').on('click',()=>{
+                if($('.Corps').css('display')=='none'){
+                    $('.Corps').css('display','block');
+                }else{
+                    $('.Corps').css('display','none');
+                }
+            });
+        </script>
+</body>
+</html>

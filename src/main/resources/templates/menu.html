@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>トップ</title>
+<style>
+body {
+	background-color: #fff;
+}
+
+.title {
+	background-color: #ffd4d4;
+	height: 120px;
+}
+
+.title  img {
+	height: 120px;
+	width: auto;
+}
+
+ul {
+	display: flex;
+	justify-content: center;
+}
+
+li {
+	list-style: none;
+	margin-right: 5%;
+	margin-bottom: none;
+	text-align: center;
+}
+
+li img {
+	height: 150px;
+	width: 150px;
+	border-radius: 60px;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	color: #831f1a;
+	text-decoration: none;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+a:hover {
+	filter: alpha(opacity = 70);
+	-moz-opacity: 0.7;
+	opacity: 0.7;
+	text-decoration: none;
+}
+
+.img__inner {
+	display: flex;
+	gap: 30px;
+	padding: 0px 0;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.img__card {
+	width: 33.333%;
+	margin: 0 auto;
+}
+
+.img-item {
+	width: 100%;
+	height: auto;
+	object-fit: cover; /* width, heightといっしょに使います */
+	border: 1px solid #111;
+}
+
+.osusume h3 {
+	position: relative;
+	margin-left: 20%;
+	color: #831f1a;
+}
+</style>
+</head>
+<body>
+	<header class="title">
+		<a th:href="@{/choco}"> <img th:src="@{/images/title.png}"
+			alt="代替テキスト">
+		</a>
+	</header>
+	<br>
+	<div class="icon">
+		<ul>
+			<li><a th:href="@{/choco/choco-list}"> <img
+					th:src="@{/images/ichiran.png}" alt="代替テキスト">
+					<p>一覧表示</p>
+			</a></li>
+			<li><a th:href="@{/choco/new}"> <img
+					th:src="@{/images/update.png}" alt="代替テキスト">
+					<p>商品登録</p>
+			</a></li>
+			<li><a th:href="@{/choco/ranking}"> <img
+					th:src="@{/images/ranking.png}" alt="代替テキスト">
+					<p>ランキング</p>
+			</a></li>
+			<li><a th:href="@{#}"> <img
+					th:src="@{/images/fuguaiform.png}" alt="代替テキスト">
+					<p>不具合フォーム(整備中)</p>
+			</a></li>
+		</ul>
+	</div>
+	<br>
+	<div class="osusume">
+		<h3>~おすすめ~</h3>
+		<p th:if="${msg}" th:text="${msg}"></p>
+		<div class="img__inner">
+			<div class="img__card">
+				<th:if="${chocoForm}" >
+					<img th:src="${chocoForm.img}" class="img-item">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

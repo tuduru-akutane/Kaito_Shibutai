@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品編集・削除</title>
+<style>
+.title {
+	background-color: #ffd4d4;
+	height: 120px;
+}
+
+.title  img {
+	height: 120px;
+	width: auto;
+}
+</style>
+</head>
+<body>
+	<header class="title">
+		<a th:href="@{/choco}"> <img th:src="@{/images/title.png}"
+			alt="代替テキスト">
+		</a>
+	</header>
+	<br>
+	<h2>商品編集・削除</h2>
+
+	<p th:if="${fault}" th:text="${fault}" style="color: blue"></p>
+
+	<form method="post"
+		th:action="@{/choco/choco-list/{id}/update(id=${chocoForm.id})}"
+		th:object="${chocoForm}" enctype="multipart/form-data">
+		<!--  <input th:if="${id}" type="hidden" th:field="*{id}">-->
+		<p>
+			企業名： <select th:field="*{maker}">
+				<option value="1">ロッテ</option>
+				<option value="2">ブルボン</option>
+				<option value="3">森永</option>
+				<option value="4">明治</option>
+				<option value="5">グリコ</option>
+				<option value="6">不二家</option>
+				<option value="7">ネスレ</option>
+			</select>
+		</p>
+		<p>
+			分類： <select th:field="*{kind}">
+				<option value="1">トリュフ</option>
+				<option value="2">板チョコ</option>
+				<option value="3">アイス</option>
+				<option value="4">クッキー</option>
+				<option value="5">ビスケット</option>
+				<option value="6">ウエハース</option>
+			</select>
+		</p>
+		<p>
+			商品名：<input type="text" th:field="*{name}">
+		</p>
+		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+			style="color: red;"></div>
+		<p>
+			フレーバー： <select th:field="*{taste}">
+				<option value="1">ミルク</option>
+				<option value="2">ビター</option>
+				<option value="3">ホワイト</option>
+				<option value="4">フルーツ</option>
+				<option value="5">抹茶</option>
+			</select>
+		</p>
+		<p>
+			商品画像ファイル：<input type="file" accept="image/*"
+				th:field="*{multipartFile}">
+		</p>
+		<p>
+			公式サイトリンク：<input type="text" th:field="*{link}">
+		</p>
+
+		<p>
+			<input type="submit" value="編集">
+	</form>
+
+	<form method="post"
+		th:action="@{/choco/choco-list/{id}/delete(id=${chocoForm.id})}"
+		th:object="${chocoForm}" enctype="multipart/form-data">
+		<input type="submit" value="削除">
+	</form>
+	</p>
+
+</body>
+</html>
